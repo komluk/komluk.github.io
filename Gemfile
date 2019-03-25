@@ -1,1 +1,2 @@
-gem "jekyll-theme-hacker"
+gem 'jekyll-theme-hacker'
+source 'https://rubygems.org'
