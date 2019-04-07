@@ -1,12 +1,12 @@
 title: Łukasz Komosa
 email: lukasz.komosa@komluk.com
-description: A Blog Theme by komluk
-baseurl: "" # the subpath of your site, e.g. /blog
+description: Software Developer at FinAi
 url: "https://komluk.github.io"
 
 # Social Profiles
 github_username: komluk
-facebook_username: 'komluk91'
+facebook_username: komluk91
+linkedin_username: komluk
 
 # Build settings
 markdown: kramdown
