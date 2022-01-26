@@ -19,14 +19,14 @@ timezone: Europe/Warsaw
 # ↓ --------------------------
 
 title: Łukasz Komosa
-tagline: '#Microservices #Azure #Cloud #Microsoft #Backend #FullStack #DevOps #Architect'
+tagline: A text-focused Jekyll theme
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, portfolio, sidebar,
   bootstrap Jekyll theme with responsive web design
   and focuses on text presentation.
 
-url: ''
+url: 'https://komluk.github.io'
 
 github:
   username: komluk
@@ -77,7 +77,7 @@ theme_mode:   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: 
+avatar: '/assets/img/avatar.png'
 
 # boolean type, the global switch for ToC in posts.
 toc: true
