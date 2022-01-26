@@ -18,7 +18,3 @@
   type: stack-overflow
   icon: 'fab fa-stack-overflow'
   url:  'https://stackoverflow.com/users/2626479/komluk'
-# -
-#   type: rss
-#   icon: 'fas fa-rss'
-#   noblank: true
