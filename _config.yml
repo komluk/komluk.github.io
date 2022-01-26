@@ -19,7 +19,7 @@ timezone: Europe/Warsaw
 # ↓ --------------------------
 
 title: Łukasz Komosa
-tagline: A text-focused Jekyll theme
+tagline: '#FullStack #DevOps #Architect'
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, portfolio, sidebar,
@@ -34,8 +34,6 @@ twitter:
   username: komluk
 
 social:
-  # Change to your full name.
-  # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: Łukasz Komosa
   email: lukasz.komosa@komluk.com
   links:
