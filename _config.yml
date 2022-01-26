@@ -18,8 +18,8 @@ timezone: Europe/Warsaw
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: komluk
-tagline: A text-focused Jekyll theme
+title: Łukasz Komosa
+tagline: '#Microservices #Azure #Cloud #Microsoft #Backend #FullStack #DevOps #Architect'
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, portfolio, sidebar,
