@@ -28,24 +28,22 @@ description: >-                        # used by seo meta and the atom feed
   and focuses on text presentation.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: ''
+url: 'https://komluk.github.io'
 
 github:
   username: komluk             # change to your github username
 
 twitter:
-  username: twitter_username            # change to your twitter username
+  username: komluk            # change to your twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: Łukasz Komosa
-  email: lukasz.komosa@komluk.com             # change to your email address
+  email: lukasz.komosa@komluk.com
   links:
-    # The first element serves as the copyright owner's link
-    - https://twitter.com/komluk      # change to your twitter homepage
-    - https://github.com/komluk       # change to your github homepage
-    # Uncomment below to add more social links
+    - https://twitter.com/komluk
+    - https://github.com/komluk
     - https://www.facebook.com/komluk91
     - https://www.linkedin.com/in/komluk
 
