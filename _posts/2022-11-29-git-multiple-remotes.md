@@ -1,5 +1,5 @@
 ---
-title: Working with multiple Git remotes repositories
+title: Working with multiple remotes repositories
 author:
   name: Łukasz Komosa
   link: https://github.com/komluk
@@ -9,7 +9,7 @@ tags: [git]
 render_with_liquid: false
 ---
 
-This post will guide you how to work with git remotes and push to multiple repositories with a single command. If you don't know what [`git`](https://git-scm.com/) is, you should probably read about it before you continue.
+This post will guide you how to work with `git` remotes and push to multiple repositories with a single command. If you don't know what [`git`](https://git-scm.com/) is, you should probably read about it before you continue.
 
 ## Prerequisites
 Basic knowledge of the following `git` commands:
@@ -70,6 +70,7 @@ git remote add all git@github.com:komluk/repository.git
 git remote set-url --add --push all git@github.com:komluk/repository.git
 ```
 >Re-register the remote as a push URL.
+
 ```bash
 git remote set-url --add --push all git@devops.com:komluk/repository.git
 ```
