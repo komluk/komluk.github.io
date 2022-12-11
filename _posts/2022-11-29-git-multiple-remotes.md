@@ -78,7 +78,7 @@ git remote set-url --add --push all git@devops.com:komluk/repository.git
 
 Now, we can push to all remote repositories with a single command!
 ```bash
-git push all BRANCH
+git push --all BRANCH
 ```
 >Replace BRANCH with the name of the branch you want to push.
 
@@ -86,10 +86,14 @@ git push all BRANCH
 
 It is not possible to `git pull` from multiple repos. However, you can `git fetch` from multiple repos with the following command:
 ```bash
+git fetch --all
 git checkout BRANCH
 ```
 >Checkout the branch you want to work with.
-
+```bash
+git merge remotes/upstream/main
+```
+>Merge from remotes to main branch
 ```bash
 git reset --hard REMOTE-ID/BRANCH
 ```
