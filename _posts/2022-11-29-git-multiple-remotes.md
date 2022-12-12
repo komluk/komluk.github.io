@@ -21,7 +21,7 @@ git push
 ```
 Have a write access to one or more remote `git` repositories
 
-### Defining multiple remotes
+## Defining multiple remotes
 The first step is to add remote repos to your project
 
 ```bash
@@ -50,6 +50,7 @@ git remote set-url upstream git@github.com:komluk/repository2.git
 
 ### List all remotes
 To see a list of all remotes, simply use the following command:
+
 ```bash
 git remote -v
 origin	    git@github.com:komluk/repository.git (fetch)
@@ -58,7 +59,7 @@ upstream    git@devops.com:komluk/repository.git (fetch)
 upstream    git@devops.com:komluk/repository.git (push)
 ```
 
-### Push to multiple remotes
+## Push to multiple remotes
 Now we have a primary remote repo and other remotes as well, it’s time to configure the push. The objective is to push to multiple Git remotes with a single git push command.
 
 ```bash
@@ -83,17 +84,19 @@ git push --all BRANCH
 >Replace BRANCH with the name of the branch you want to push.
 
 ## Pull from multiple remotes
-
 It is not possible to `git pull` from multiple repos. However, you can `git fetch` from multiple repos with the following command:
+
 ```bash
 git fetch --all
 git checkout BRANCH
 ```
 >Checkout the branch you want to work with.
+
 ```bash
 git merge remotes/upstream/main
 ```
 >Merge from remotes to main branch
+
 ```bash
 git reset --hard REMOTE-ID/BRANCH
 ```
