@@ -3,7 +3,7 @@ title: Installing and Using Zerotier VPN on a Linux Machine
 author:
   name: Łukasz Komosa
   link: https://github.com/komluk
-date: 2022-01-27 23:00:00 +000
+date: 2022-12-27 23:00:00 +000
 categories: [VPN, Zerotier, Linux]
 tags: [VPN]
 render_with_liquid: false
