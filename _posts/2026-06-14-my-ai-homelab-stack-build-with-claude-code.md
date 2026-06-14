@@ -19,7 +19,7 @@ Three reasons, in order of how much they actually drive my decisions:
 
 The framing for this post comes from Anthropic and ByteByteGo's [Build with Claude Code](https://bytebyteai.com/c/build-with-claude-code) course. It lays out a set of working principles for building *with* agents rather than just prompting them, and those principles map almost one-to-one onto components I had already built in my homelab. So I will walk the principles, and for each one point at the concrete thing in my stack that implements it.
 
-First, the physical layer, because everything below sits on it. There is one Proxmox host, `REDACTED` (`REDACTED`), on a flat `REDACTED` LAN with an internal domain of `REDACTED`. Every service is an LXC container, which means each one is cheap to snapshot, rebuild, and reason about in isolation. That is the whole homelab: one box, many small containers.
+First, the physical layer, because everything below sits on it. There is a single Proxmox host on a private LAN behind the firewall, with nothing exposed to the public internet beyond what I deliberately publish. Every service is its own container, which means each one is cheap to snapshot, rebuild, and reason about in isolation. That is the whole homelab: one box, many small containers.
 
 ## The agentic loop: gather context, act, verify
 
@@ -57,7 +57,7 @@ The fourth principle is the **Model Context Protocol** -- a standard way to plug
 Two MCP-shaped integrations matter here:
 
 - The **semantic-memory MCP server** I mentioned above is the obvious one -- it is literally an MCP server giving agents a memory tool.
-- The **self-hosted gateway** is the other half. `aiproxy` lives in REDACTED at `REDACTED`: [LiteLLM](/posts/self-hosting-llm-gateway-litellm/) for the OpenAI-compatible front door, a `REDACTED` so a `claude.ai` OAuth session stands in for an API key, and Caddy terminating TLS. Every agent and tool points at that one endpoint instead of holding its own credentials.
+- The **self-hosted gateway** is the other half. `aiproxy` runs in its own container: [LiteLLM](/posts/self-hosting-llm-gateway-litellm/) for the OpenAI-compatible front door, a `REDACTED` so a `claude.ai` OAuth session stands in for an API key, and Caddy terminating TLS. Every agent and tool points at that one internal endpoint instead of holding its own credentials.
 
 The gateway is the reason "no paid API key" is true. I covered the LiteLLM half in [Self-Hosting an LLM Gateway With LiteLLM](/posts/self-hosting-llm-gateway-litellm/); the OAuth-proxy layer in front of it is what lets Claude Code authenticate through my session rather than a metered key.
 
@@ -84,7 +84,7 @@ Concretely, here is what happens when I ask for a non-trivial change, end to end
 4. `analyst` and `architect` produce a proposal and a design; I review *intent* before any code exists.
 5. `developer` implements inside a git worktree against the task list, running tests as it goes.
 6. `reviewer` checks the diff against the spec; gates block anything with a critical finding.
-7. `gitops` commits, merges the worktree branch, and pushes -- to my own [Gitea](https://about.gitea.com/) instance in REDACTED, not a public host.
+7. `gitops` commits, merges the worktree branch, and pushes -- to my own self-hosted [Gitea](https://about.gitea.com/) instance, not a public host.
 
 Every hop in that chain runs on hardware I own, through a model endpoint I control, against memory that stays in my network. The only thing crossing the boundary is the model inference itself, and even that goes through my gateway.
 
