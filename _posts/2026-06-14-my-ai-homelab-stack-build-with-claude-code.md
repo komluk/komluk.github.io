@@ -14,7 +14,7 @@ I have written a handful of posts about individual pieces of my setup -- the LLM
 Three reasons, in order of how much they actually drive my decisions:
 
 - **Control.** I decide which models are reachable, where memory lives, and what an agent is allowed to touch. Nothing changes under me without my say-so.
-- **Cost.** I run Claude Code through a self-hosted gateway backed by a `claude.ai` OAuth session rather than a metered API key, so I am not watching a token counter on every experiment.
+- **Consolidation.** Every tool and agent talks to one self-hosted gateway instead of carrying its own credentials, so there is a single place to manage access and routing rather than scattered keys across a dozen experiments.
 - **Privacy.** Code, notes, and decisions stay inside my own network. The data plane is mine.
 
 The framing for this post comes from Anthropic and ByteByteGo's [Build with Claude Code](https://bytebyteai.com/c/build-with-claude-code) course. It lays out a set of working principles for building *with* agents rather than just prompting them, and those principles map almost one-to-one onto components I had already built in my homelab. So I will walk the principles, and for each one point at the concrete thing in my stack that implements it.
@@ -57,9 +57,9 @@ The fourth principle is the **Model Context Protocol** -- a standard way to plug
 Two MCP-shaped integrations matter here:
 
 - The **semantic-memory MCP server** I mentioned above is the obvious one -- it is literally an MCP server giving agents a memory tool.
-- The **self-hosted gateway** is the other half. `aiproxy` runs in its own container: [LiteLLM](/posts/self-hosting-llm-gateway-litellm/) for the OpenAI-compatible front door, a `REDACTED` so a `claude.ai` OAuth session stands in for an API key, and Caddy terminating TLS. Every agent and tool points at that one internal endpoint instead of holding its own credentials.
+- The **self-hosted gateway** is the other half. `aiproxy` runs in its own container: [LiteLLM](/posts/self-hosting-llm-gateway-litellm/) for an OpenAI-compatible front door and Caddy terminating TLS. Every agent and tool points at that one internal endpoint instead of holding its own credentials.
 
-The gateway is the reason "no paid API key" is true. I covered the LiteLLM half in [Self-Hosting an LLM Gateway With LiteLLM](/posts/self-hosting-llm-gateway-litellm/); the OAuth-proxy layer in front of it is what lets Claude Code authenticate through my session rather than a metered key.
+The gateway is the reason there is one front door instead of a dozen. I covered the LiteLLM half in [Self-Hosting an LLM Gateway With LiteLLM](/posts/self-hosting-llm-gateway-litellm/); the point here is that authentication and routing are centralized rather than copied into every tool.
 
 ## Parallel development: worktrees and multi-agent workflows
 
@@ -98,4 +98,4 @@ It is also where the always-on services live. `scribe`, an ambient PL/EN note-ta
 
 The thing the course crystallized for me is that "building with Claude Code" is not a prompting skill -- it is a systems-design one. The agentic loop, context discipline, skills, MCP, and parallelism are architectural choices, and a homelab is a great place to make them deliberately because you own every layer.
 
-My version is opinionated and self-hosted to the studs: one Proxmox box, a gateway that swaps a paid key for an OAuth session, a memory server agents actually consult, and an eleven-agent plugin that routes work through a reviewable pipeline. None of the pieces are exotic on their own. What makes it a *stack* is that they share a protocol, a memory, and a network -- and that I can read every line of how it behaves before I trust it. The plugin is open source at [github.com/komluk/scaffolding](https://github.com/komluk/scaffolding) if you want to start from the same place I did.
+My version is opinionated and self-hosted to the studs: one Proxmox box, a gateway that centralizes model access behind a single endpoint, a memory server agents actually consult, and an eleven-agent plugin that routes work through a reviewable pipeline. None of the pieces are exotic on their own. What makes it a *stack* is that they share a protocol, a memory, and a network -- and that I can read every line of how it behaves before I trust it. The plugin is open source at [github.com/komluk/scaffolding](https://github.com/komluk/scaffolding) if you want to start from the same place I did.
